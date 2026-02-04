@@ -1,12 +1,12 @@
 
 ## filein  = -I/usr/include -I/usr/lib/x86_64-linux-gnu/mpich/include -I/usr/lib/x86_64-linux-gnu/openmpi/lib/ -I/usr/lib/gcc/x86_64-linux-gnu/11/ -I/usr/include/c++/11/
 
-filein  = -I/usr/include/ -I/usr/lib/x86_64-linux-gnu/openmpi/include/ -I/usr/lib/x86_64-linux-gnu/openmpi/lib/ -I/usr/lib/gcc/x86_64-linux-gnu/11/ -I/usr/include/c++/11/ -I/usr/lib/cuda/include
+filein  = -I/usr/include/ -I/usr/lib/x86_64-linux-gnu/openmpi/include/ -I/usr/lib/cuda/include
 
 ## LDLIBS  = -L/usr/lib/x86_64-linux-gnu -lmpich -L/usr/lib64 -L/usr/lib/gcc/x86_64-linux-gnu/11 -lgfortran
-LDLIBS  = -L/usr/lib/x86_64-linux-gnu -L/usr/lib64 -L/usr/lib/gcc/x86_64-linux-gnu/11 -lgfortran -L/usr/lib/cuda/lib64 -lcudart -lmpi -lgfortran
+LDLIBS  = -L/usr/lib/x86_64-linux-gnu -L/usr/lib64 -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/cuda/lib64 -lcudart -lmpi -lgfortran 
 
-CXXAPPFLAGS  = -O3 -Wno-deprecated -Dfortran3 -Dnewc
+CXXAPPFLAGS  = -O3 -std=gnu++17 -Wno-deprecated -Dfortran3 -Dnewc
 #f90appflags = -O3 -fpp
 f90appflags  = -O3 -x f95-cpp-input
 f90          = gfortran 
