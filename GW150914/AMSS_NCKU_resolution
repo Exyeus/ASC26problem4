@@ -1,0 +1,46 @@
+
+ Printing the basic parameter and setting in the AMSS-NCKU simulation 
+
+ The number of MPI processes in the AMSS-NCKU simulation =  64
+
+ The form of computational equation  =  BSSN
+ The initial data in this simulation =  Ansorg-TwoPuncture
+
+ Starting evolution time   =  0.0
+ Final evolution time      =  1000.0
+ Maximal iteration number  =  10000000
+ Courant factor            =  0.5
+ Strength of dissipation   =  0.15
+ Symmetry of system        =  equatorial-symmetry
+ The Runge-Kutta scheme in the time evolution   =  runge-kutta-45
+ The finite-difference scheme in the simulation =  4th-order
+
+ The static AMR grid type =  Linear
+ The moving AMR grid type =  Linear
+
+ The number of static AMR grid levels =  5
+ The number of moving AMR grid levels =  4
+ The number of total  AMR grid levels =  9
+
+ The grid number of each static AMR grid level =  96
+ The grid number of each moving AMR grid level =  48
+
+ The scale for largest  static AMR grid in X direction =  [-320.  320.]
+ The scale for largest  static AMR grid in Y direction =  [-320.  320.]
+ The scale for largest  static AMR grid in Z direction =  [-320.  320.]
+ The scale for smallest static AMR grid in X direction =  [-20.  20.]
+ The scale for smallest static AMR grid in Y direction =  [-20.  20.]
+ The scale for smallest static AMR grid in Z direction =  [-20.  20.]
+ The scale for largest  moving AMR grid =  [-5.  5.]
+ The scale for smallest moving AMR grid =  [-0.625  0.625]
+
+ The coarest resolution for static AMR grid =  6.666666666666667
+ The finest  resolution for static AMR grid =  0.4166666666666667
+ The coarest resolution for moving AMR grid =  0.20833333333333334
+ The finest  resolution for moving AMR grid =  0.026041666666666668
+
+ The time refinement starts from AMR grid level =  4
+ The time interval in each step for coarest AMR grid during time evaluation =  0.4166666666666667
+
+ This simulation only uses the Patch AMR grid structure, the Shell-Patch is not used 
+
