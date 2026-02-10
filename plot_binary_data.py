@@ -136,14 +136,13 @@ def get_data_xy( Rmin, Rmax, n, data0, time, figure_title, figure_outdir ):
     # print( data_xy_0.shape )
     # print( data_xy.shape )
     
-    # Define finer coordinate grids for interpolation
-    x_new = numpy.linspace(Rmin[0], Rmax[0], int(2.5*n[0]))
-    y_new = numpy.linspace(Rmin[1], Rmax[1], int(2.5*n[1]))
-    z_new = numpy.linspace(Rmin[2], Rmax[2], int(2.5*n[2]))
+    # Define finer coordinate grids for interpolation (optimized for speed)
+    x_new = numpy.linspace(Rmin[0], Rmax[0], int(1.5*n[0]))  # Reduced from 2.5 to 1.5 for speed
+    y_new = numpy.linspace(Rmin[1], Rmax[1], int(1.5*n[1]))  # Reduced from 2.5 to 1.5 for speed
     X_new, Y_new = numpy.meshgrid(x_new, y_new)
-    
-    # Interpolate data onto the finer grid
-    data_xy_fit = scipy.interpolate.griddata( (X.flatten(), Y.flatten()), data_xy.flatten(), (X_new, Y_new), method="cubic" )
+
+    # Interpolate data onto the finer grid (use linear instead of cubic for speed)
+    data_xy_fit = scipy.interpolate.griddata( (X.flatten(), Y.flatten()), data_xy.flatten(), (X_new, Y_new), method="linear" )
 
     # Plot 2D contour map
     fig, ax = plt.subplots()

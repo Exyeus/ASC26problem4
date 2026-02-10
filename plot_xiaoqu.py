@@ -18,6 +18,9 @@ import AMSS_NCKU_Input as input_data
 
 # plt.rcParams['text.usetex'] = True  ## enable LaTeX fonts in plots
 
+# Optimization: Disable interactive mode for faster plotting
+plt.ioff()  # Turn off interactive mode to speed up plotting
+
 
 
 ####################################################################################
@@ -83,6 +86,10 @@ def generate_puncture_orbit_plot( outdir, figure_outdir ):
     # load the full data file (assumed whitespace-separated floats)
     data = numpy.loadtxt(file0)
 
+    # Handle case where data is 1D (single timestep) or 2D (multiple timesteps)
+    if data.ndim == 1:
+        data = data.reshape(1, -1)  # Reshape to 2D with one row
+
     # print(data[:,0])
     # print(data[:,2])
 
@@ -93,14 +100,14 @@ def generate_puncture_orbit_plot( outdir, figure_outdir ):
     BH_Ymax = numpy.zeros(input_data.puncture_number)
     BH_Zmin = numpy.zeros(input_data.puncture_number)
     BH_Zmax = numpy.zeros(input_data.puncture_number)
-    
+
     # --------------------------
-    
+
     # Plot black-hole displacement trajectory (XY)
-    
+
     plt.figure( figsize=(8,8)                         )   ## figsize sets the figure size
     plt.title( " Black Hole Trajectory ", fontsize=18 )   ## fontsize sets the title size
-    
+
     for i in range(input_data.puncture_number):
         BH_x       = data[:, 3*i+1]
         BH_y       = data[:, 3*i+2]
@@ -357,7 +364,11 @@ def generate_puncture_distence_plot( outdir, figure_outdir ):
 
     # load the full data file (assumed whitespace-separated floats)
     data = numpy.loadtxt(file0)
-    
+
+    # Handle case where data is 1D (single timestep) or 2D (multiple timesteps)
+    if data.ndim == 1:
+        data = data.reshape(1, -1)  # Reshape to 2D with one row
+
     # --------------------------
     
     # --------------------------
@@ -475,6 +486,10 @@ def generate_puncture_orbit_plot3D( outdir, figure_outdir ):
     # load the full data file (assumed whitespace-separated floats)
     data = numpy.loadtxt(file0)
 
+    # Handle case where data is 1D (single timestep) or 2D (multiple timesteps)
+    if data.ndim == 1:
+        data = data.reshape(1, -1)  # Reshape to 2D with one row
+
     # initialize min/max arrays for black-hole coordinates
     BH_Xmin = numpy.zeros(input_data.puncture_number)
     BH_Xmax = numpy.zeros(input_data.puncture_number)
@@ -568,7 +583,11 @@ def generate_gravitational_wave_psi4_plot( outdir, figure_outdir, detector_numbe
     
     # load the full data file (assumed whitespace-separated floats)
     data = numpy.loadtxt(file0)
-    
+
+    # Handle case where data is 1D (single timestep) or 2D (multiple timesteps)
+    if data.ndim == 1:
+        data = data.reshape(1, -1)  # Reshape to 2D with one row
+
     # extract columns from the Phi4 file
     time                 = data[:,0]
     psi4_l2m2m_real      = data[:,1]
@@ -676,7 +695,11 @@ def generate_ADMmass_plot( outdir, figure_outdir, detector_number_i ):
 
     # load the full data file (assumed whitespace-separated floats)
     data = numpy.loadtxt(file0)
-    
+
+    # Handle case where data is 1D (single timestep) or 2D (multiple timesteps)
+    if data.ndim == 1:
+        data = data.reshape(1, -1)  # Reshape to 2D with one row
+
     # extract columns from the ADM momentum file
     time     = data[:,0]
     ADM_mass = data[:,1]
@@ -789,7 +812,11 @@ def generate_constraint_check_plot( outdir, figure_outdir, input_level_number ):
     
     # load the full data file (assumed whitespace-separated floats)
     data = numpy.loadtxt(file0)
-    
+
+    # Handle case where data is 1D (single timestep) or 2D (multiple timesteps)
+    if data.ndim == 1:
+        data = data.reshape(1, -1)  # Reshape to 2D with one row
+
     # extract columns from the constraint data file
     time          = data[:,0]
     Constraint_H  = data[:,1]

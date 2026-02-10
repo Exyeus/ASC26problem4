@@ -198,19 +198,19 @@ if not os.path.exists(AMSS_NCKU_source_path):
     print( " Press Enter to continue. " )
     ## Wait for user input (press Enter) to proceed
     inputvalue = input()
-    
+
 ###############################
 
 # Copy AMSS-NCKU source files to prepare for compilation
-shutil.copytree(AMSS_NCKU_source_path, AMSS_NCKU_source_copy)    
+shutil.copytree(AMSS_NCKU_source_path, AMSS_NCKU_source_copy)
 
 # (Comment) Example: copy the src folder to destination
 # shutil.copytree(src, dst)
 
 # Copy the generated macro files into the AMSS_NCKU source folder
 
-macrodef_h_path  = os.path.join(File_directory, "macrodef.h") 
-macrodef_fh_path = os.path.join(File_directory, "macrodef.fh") 
+macrodef_h_path  = os.path.join(File_directory, "macrodef.h")
+macrodef_fh_path = os.path.join(File_directory, "macrodef.fh")
 
 shutil.copy2(macrodef_h_path,  AMSS_NCKU_source_copy)
 shutil.copy2(macrodef_fh_path, AMSS_NCKU_source_copy)
@@ -221,20 +221,36 @@ shutil.copy2(macrodef_fh_path, AMSS_NCKU_source_copy)
 
 ###############################
 
-# Compile related programs
+# Compile related programs (skip if executable already exists)
 
 import makefile_and_run
 
+## Check if executable already exists
+executable_exists = False
+if (input_data.GPU_Calculation == "no"):
+    expected_exe = os.path.join(AMSS_NCKU_source_copy, "ABE")
+elif (input_data.GPU_Calculation == "yes"):
+    expected_exe = os.path.join(AMSS_NCKU_source_copy, "ABEGPU")
+
+if os.path.exists(expected_exe):
+    print( " Found existing executable, skipping compilation to save time " )
+    executable_exists = True
+else:
+    print( " No existing executable found, proceeding with compilation " )
+
 ## Change working directory to the target source copy
 os.chdir(AMSS_NCKU_source_copy)
- 
-## Build the main AMSS-NCKU executable (ABE or ABEGPU)
-makefile_and_run.makefile_ABE()
 
-## If the initial-data method is Ansorg-TwoPuncture, build the TwoPunctureABE executable
-if (input_data.Initial_Data_Method == "Ansorg-TwoPuncture" ): 
-    makefile_and_run.makefile_TwoPunctureABE()
-    
+if not executable_exists:
+    ## Build the main AMSS-NCKU executable (ABE or ABEGPU)
+    makefile_and_run.makefile_ABE()
+
+    ## If the initial-data method is Ansorg-TwoPuncture, build the TwoPunctureABE executable
+    if (input_data.Initial_Data_Method == "Ansorg-TwoPuncture" ):
+        makefile_and_run.makefile_TwoPunctureABE()
+else:
+    print( " Using pre-compiled executable to accelerate development " )
+
 ###########################
 
 ## Change current working directory back up two levels
@@ -368,7 +384,18 @@ print()
 ## Change to the run directory
 os.chdir( output_directory )
 
-makefile_and_run.run_ABE()
+# Run ABE and check for success
+try:
+    makefile_and_run.run_ABE()
+    # Check if ABE executable exists and output files were created
+    if not os.path.exists("binary_output/setting.par"):
+        print(" ERROR: ABE simulation failed - output files not found "        )
+        print(" Please check ABE_out.log for error details "                   )
+        sys.exit(1)
+except Exception as e:
+    print(f" ERROR: ABE simulation failed with exception: {e}"                )
+    print(" Please check ABE_out.log for error details "                      )
+    sys.exit(1)
 
 ## Change current working directory back up two levels
 os.chdir('..')

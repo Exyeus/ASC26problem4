@@ -16,11 +16,11 @@ LDLIB_CUDA= -L/usr/local/cuda/cuda-4.0/lib64 -lcudart
 LDLIB_MPI=  -L/usr/local/mpi-gcc/lib -lmpich 
 LDLIB_FORTRAN= -L/vol-th/software/gcc-4.6.1/lib64 -lgfortran 
 
-#CXXAPPFLAGS defines all the flages for c plus compiler
+#CXXAPPFLAGS defines all the flages for c plus compiler (optimized for performance)
 #CXXAPPFLAGS = -O2 -Wno-deprecated -Dfortran3 -Dnewc -fopenmp
-CXXAPPFLAGS = -O2 -Wno-deprecated -Dfortran3 -Dnewc 
-#f90appflags = -O2 -fopenmp
-f90appflags = -O2 -x f95-cpp-input 
+CXXAPPFLAGS = -O3 -march=native -mtune=native -Wno-deprecated -Dfortran3 -Dnewc -ffast-math -funroll-loops -fomit-frame-pointer
+#f90appflags = -O2 -fopenmp (optimized for performance)
+f90appflags = -O3 -march=native -mtune=native -x f95-cpp-input -ffast-math -funroll-loops -fomit-frame-pointer 
 f90 = gfortran
 CXX = mpicxx
 CLINKER = mpicxx

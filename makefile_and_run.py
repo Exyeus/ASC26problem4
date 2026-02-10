@@ -26,11 +26,11 @@ def makefile_ABE():
     print( " Compiling the AMSS-NCKU executable file ABE/ABEGPU " ) 
     print(                                                        )
 
-    ## Build command
+    ## Build command (optimized for faster compilation)
     if (input_data.GPU_Calculation == "no"):
-        makefile_command  = "make -j4" + " ABE"
+        makefile_command  = "make -j8" + " ABE"  # Increased from -j4 to -j8 for faster compilation
     elif (input_data.GPU_Calculation == "yes"):
-        makefile_command  = "make -j4" + " ABEGPU"
+        makefile_command  = "make -j8" + " ABEGPU"  # Increased from -j4 to -j8 for faster compilation
     else:
         print( " CPU/GPU numerical calculation setting is wrong " )
         print(                                                    )
@@ -105,10 +105,10 @@ def run_ABE():
     ## Define the command to run; cast other values to strings as needed
     
     if (input_data.GPU_Calculation == "no"):
-        mpi_command         = "mpirun -np " + str(input_data.MPI_processes) + " ./ABE"
+        mpi_command         = "mpirun --oversubscribe -np " + str(input_data.MPI_processes) + " ./ABE"
         mpi_command_outfile = "ABE_out.log"
     elif (input_data.GPU_Calculation == "yes"):
-        mpi_command         = "mpirun -np " + str(input_data.MPI_processes) + " ./ABEGPU"
+        mpi_command         = "mpirun --oversubscribe -np " + str(input_data.MPI_processes) + " ./ABEGPU"
         mpi_command_outfile = "ABEGPU_out.log"
  
     ## Execute the MPI command and stream output
