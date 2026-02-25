@@ -1,0 +1,26 @@
+#  -----0-----> y
+#   -      +      use Brugmann's convention
+ABE::mp        = -1.0
+ABE::mm        = -1.0
+# b            =  D/2
+ABE::b         =  5.0
+ABE::P_plusx   =  -0.09530152296974252
+ABE::P_plusy   =  -0.00084541526517121
+ABE::P_plusz   =  0.0
+ABE::P_minusx  =  0.09530152296974252
+ABE::P_minusy  =  0.00084541526517121
+ABE::P_minusz  =  0.0
+ABE::S_plusx   =  0.0
+ABE::S_plusy   =  0.0
+ABE::S_plusz   =  0.09509112426035504
+ABE::S_minusx  =  0.0
+ABE::S_minusy  =  0.0
+ABE::S_minusz  =  -0.09156449704142013
+ABE::Mp        =  0.5538461538461539
+ABE::Mm        =  0.4461538461538462
+ABE::admtol    =  1.e-8
+ABE::Newtontol =  5.e-12
+ABE::nA        =  50
+ABE::nB        =  50
+ABE::nphi      =  26
+ABE::Newtonmaxit =  50

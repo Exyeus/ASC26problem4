@@ -1,0 +1,25 @@
+# File created on Tue Feb 24 19:53:24 2026
+#
+macro definition used in microdef.fh
+Frans' tetrad type for psi4 calculation
+Cell center numerical grid structure
+                   ghost zone = 3
+                  buffer zone = 6
+                  Gauge type = 0
+using BSSN variable for constraint violation and psi4 calculation
+macro definition used in microdef.h
+     Sommerfeld boundary type = 0
+using Gauss integral in waveshell
+                     ABE type = 0
+                     ID  type = 0
+        Psi4 calculation type = 0
+    RestrictProlong time type = 1
+    RestrictProlong scheme type = 0
+Enforce algebra constraint type = 0
+Analysis and PBH treat type = 1
+   mesh level parallel type = 0
+                regrid type = 0
+                        dim = 3
+               buffer_width = 6
+               SC_width = 6
+               CS_width = 12

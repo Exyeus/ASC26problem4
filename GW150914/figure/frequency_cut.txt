@@ -1,0 +1,24 @@
+
+ mass[0] = 0.5538461538461539 
+ mass[1] = 0.4461538461538462 
+
+ total mass = 1.0 
+
+ puncture distance r[(0, 1)] = 10.0 
+
+ puncture distance r[(1, 0)] = 10.0 
+
+
+ orbital period estimate:    T_orbital[(0, 1)] = 198.691765315922 
+ orbital frequency estimate: f_orbital[(0, 1)] = 0.0050329212104487046 
+
+ orbital period estimate:    T_orbital[(1, 0)] = 198.691765315922 
+ orbital frequency estimate: f_orbital[(1, 0)] = 0.0050329212104487046 
+
+
+ Orbital frequency estimate:            f_orbital_min = 0.0050329212104487046
+ Gravitational Wave frequency estimate: f_GW_min      = 0.0050329212104487046
+
+ Frequency Cut estimate: frequency_cut = 0.010065842420897409
+ Omega Cut estimate:     omega_cut     = 0.0632455532033676
+
